@@ -1,6 +1,7 @@
 var bgimg;
 var boy1,boy1img,boy2,boy2img
-var gun1,gun1img,gun2img,gun2,
+var gun1,gun1img,gun2img,gun2
+var bulltes1,bulltes2,bullets1img,bullets2img
 
 
 
@@ -16,23 +17,24 @@ boy1img=loadImage("boy1.png")
 boy2img=loadImage("boy2.png")
 gun1img=loadImage("gun1.gif")
 gun2img=loadImage("gun2.gif")
-
+bullets1img=loadImage("bullet1.gif")
+bullets2img=loadImage("bullet2.gif")
 
 }
 
 function setup() {
-  createCanvas(1200, 800);
+  createCanvas(1500, 800);
 boy1=createSprite(1200,400,80,80)
 boy2=createSprite(100,400,80,80)
-gun1=createSprite(1250,400,80,80)
-gun2=createSprite(150,400,80,80)
+gun1=createSprite(1130,330,80,80)
+gun2=createSprite(150,320,80,80)
 
 
 
 boy2.scale=0.7
 boy1.scale=0.7
-gun1.scale=0.3
-gun2.scale=0.3
+gun1.scale=0.6
+gun2.scale=0.4
 
 
 boy1.addImage(boy1img)
@@ -50,6 +52,31 @@ gun2.addImage(gun2img)
 function draw() {
   background(bgimg);
   
+if(keyDown("d")){
+ Spawnleftbullets();
+}
+if(keyDown(UP_ARROW)){
+  boy1.y=boy1.y-20
+    
+ }
+ 
+ if(keyDown(DOWN_ARROW)){
+  boy1.y=boy1.y+20
+    
+ }
+ if(keyDown("w")){
+  boy2.y=boy2.y-20
+    
+ }
+ if(keyDown("s")){
+  boy2.y=boy2.y+20
+    
+ }
+ if(keyDown(LEFT_ARROW)){
+  Spawnrightbullets();
+ }
+ gun1.y=boy1.y-40
+ gun2.y=boy2.y-80
   drawSprites();
   
 }
@@ -93,6 +120,22 @@ function spawnObstacles() {
     
     GroupObstacles.add(obstacle);
   }
+
 }
 
+function Spawnleftbullets(){
+
+ bullets1=createSprite(150,boy2.y,80,80)
+ bullets1.addImage(bullets1img)
+ bullets1.velocityX=10
+ bullets1.scale=0.2
+
+}
+function Spawnrightbullets(){
+
+  bullets2=createSprite(1135,boy1.y,80,80)
+  bullets2.addImage(bullets2img)
+  bullets2.velocityX=-10
+  bullets2.scale=0.2
+} 
   
